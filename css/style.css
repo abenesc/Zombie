@@ -1,0 +1,20 @@
+#quit{
+    position:absolute;
+    z-index:-1;
+}
+#me{
+    position:absolute;
+    width:100px;
+    height:100px;
+}
+#me2{
+    position:absolute;
+    width:100px;
+    height:100px;
+}
+#clicks{
+    
+    z-index:-1;
+    font-size:20px;
+    position:absolute
+}
