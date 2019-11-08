@@ -24,10 +24,6 @@
 
         let audio = document.getElementById("explosion");
         let isExploding = false;
-        setInterval(function() {
-            document.getElementById('me2').style.left = Math.random() * (width - 100) + "px";
-            document.getElementById('me2').style.top = Math.random() * (height - 100) + "px";
-            }, 2000);
 
         function clickHandler() {
             if (isExploding) {
