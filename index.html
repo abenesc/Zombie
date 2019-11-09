@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <p id="clicks">Score: 0</p>
+    <img src="./images/zombie2.png" id='me2'>
+    <img src="./images/zombie2.png" id='me'>
+    <button id="quit">Click to reset</button>
+    <audio id="explosion">
+        <source src="./src/explosion.mp3">
+    </audio>
+    <script>
+        let addScore = 0;
+        let width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+
+        let height = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+        let audio = document.getElementById("explosion");
+        let isExploding = false;
+
+        id = setInterval(() => {
+            document.getElementById('me2').style.left = Math.random() * (width - 100) + "px";
+            document.getElementById('me2').style.top = Math.random() * (height - 100) + "px";
+        }, 2000);
+        id2 = setInterval(() => {
+            document.getElementById('me').style.left = Math.random() * (width - 100) + "px";
+            document.getElementById('me').style.top = Math.random() * (height - 100) + "px";
+        }, 2000);
+
+        function clickHandler() {
+            if (isExploding) {
+                return
+            }
+            isExploding = true;
+            change();
+            setTimeout(() => {
+                isExploding = false;
+                document.getElementById('me2').style.left = Math.random() * (width - 100) + "px";
+                document.getElementById('me2').style.top = Math.random() * (height - 100) + "px";
+            }, 980);
+            score();
+        }
+        function clickHandler2() {
+            if (isExploding) {
+                return
+            }
+            isExploding = true;
+            change2();
+            setTimeout(() => {
+                isExploding = false;
+                document.getElementById('me').style.left = Math.random() * (width - 100) + "px";
+                document.getElementById('me').style.top = Math.random() * (height - 100) + "px";
+            }, 980);
+            score();
+        }
+
+
+        function score() {
+            addScore += 1;
+            document.getElementById("clicks").innerHTML = 'Score: ' + addScore;
+        }
+
+        function quit() {
+            document.getElementById('me2').style.top = (height - 100) / 3 + 'px';
+            document.getElementById('me2').style.left = (width - 100) / 8 + 'px';
+            document.getElementById('me').style.top = (height - 100) / 10 + 'px';
+            document.getElementById('me').style.left = (width - 100) / 30 + 'px';
+            addScore = 0;
+            document.getElementById("clicks").innerHTML = 'Score: 0';
+
+
+
+        }
+
+
+        function change() {
+            clearInterval(id);
+            document.getElementById("me2").src = "./images/zombie.gif";
+            setTimeout(function () { document.getElementById("me2").src = "./images/zombie2.png" }, 1000);
+            id = setInterval(() => {
+                document.getElementById('me2').style.left = Math.random() * (width - 100) + "px";
+                document.getElementById('me2').style.top = Math.random() * (height - 100) + "px";
+            }, 2000);
+            audio.play();
+
+
+        }
+        function change2() {
+            clearInterval(id2);
+            document.getElementById("me").src = "./images/zombie.gif";
+            setTimeout(function () { document.getElementById("me").src = "./images/zombie2.png" }, 1000);
+            id2 = setInterval(() => {
+                document.getElementById('me').style.left = Math.random() * (width - 100) + "px";
+                document.getElementById('me').style.top = Math.random() * (height - 100) + "px";
+            }, 2000);
+            audio.play();
+
+
+        }
+
+        document.getElementById('clicks').style.left = (width - 100) / 2 + 'px';
+        document.getElementById('me2').onclick = clickHandler;
+        document.getElementById('me2').style.top = (height - 100) / 3 + 'px';
+        document.getElementById('me2').style.left = (width - 100) / 8 + 'px';
+        document.getElementById('me').onclick = clickHandler2;
+        document.getElementById('me').style.top = (height - 100) / 10 + 'px';
+        document.getElementById('me').style.left = (width - 100) / 30 + 'px';
+        document.getElementById('quit').style.top = (height - 30) + 'px';
+        document.getElementById('quit').style.left = (width - 100) / 2 + 'px';
+        document.getElementById('quit').onclick = quit;
+    </script>
+
+</body>
+
+</html>
